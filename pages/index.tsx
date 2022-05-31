@@ -1,6 +1,8 @@
 import type { NextPage } from 'next'
 import Head from 'next/head'
+import Banner from '../components/Banner'
 import Header from '../components/Header'
+import requests from '../utils/requests'
 
 const Home: NextPage = () => {
   return (
@@ -10,7 +12,7 @@ const Home: NextPage = () => {
       </Head>
       <Header />
       <main>
-        {/* Banner */}
+        <Banner />
         <section>
           {/* Row */}
 
@@ -24,3 +26,49 @@ const Home: NextPage = () => {
 }
 
 export default Home
+
+export const getServerSideProps = async () => {
+  const [
+    netflixOriginals,
+    trendingNow,
+    topRated,
+    actionMovies,
+    comedyMovies,
+    animations,
+    fantasyMovies,
+    familyMovies,
+    romanceMovies,
+    documentaries,
+    mysteryMovies,
+    historyMovies,
+  ] = await Promise.all([
+    fetch(requests.fetchNetflixOriginals).then((res) => res.json()),
+    fetch(requests.fetchTrending).then((res) => res.json()),
+    fetch(requests.fetchTopRated).then((res) => res.json()),
+    fetch(requests.fetchActionMovies).then((res) => res.json()),
+    fetch(requests.fetchComedyMovies).then((res) => res.json()),
+    fetch(requests.fetchAnimations).then((res) => res.json()),
+    fetch(requests.fetchFantasyMovies).then((res) => res.json()),
+    fetch(requests.fetchFamilyMovies).then((res) => res.json()),
+    fetch(requests.fetchRomanceMovies).then((res) => res.json()),
+    fetch(requests.fetchDocumentaries).then((res) => res.json()),
+    fetch(requests.fetchMysteryMovies).then((res) => res.json()),
+    fetch(requests.fetchHistoryMovies).then((res) => res.json()),
+  ])
+  return {
+    props: {
+      netflixOriginals: netflixOriginals.results,
+      trendingNow: trendingNow.results,
+      topRated: topRated.results,
+      actionMovies: actionMovies.results,
+      comedyMovies: comedyMovies.results,
+      animations: animations.results,
+      fantasyMovies: fantasyMovies.results,
+      familyMovies: familyMovies.results,
+      romanceMovies: romanceMovies.results,
+      documentaries: documentaries.results,
+      mysteryMovies: mysteryMovies.results,
+      historyMovies: historyMovies.results,
+    }
+  }
+}
