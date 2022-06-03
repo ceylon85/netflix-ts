@@ -3,17 +3,16 @@ import Banner from '../components/Banner'
 import Header from '../components/Header'
 import requests from '../utils/requests'
 import { Movie } from '../typings'
+import Row from '../components/Row'
 interface Props {
   netflixOriginals: Movie[]
   trendingNow: Movie[]
-  // topRated: Movie[]
-  // actionMovies: Movie[]
-  // comedyMovies: Movie[]
-  // animation: Movie[]
-  // fantasyMovies: Movie[]
-  // familyMovies: Movie[]
-  // romanceMovies: Movie[]
-  // documentaries: Movie[]
+  topRated: Movie[]
+  actionMovies: Movie[]
+  comedyMovies: Movie[]
+  fantasyMovies: Movie[]
+  familyMovies: Movie[]
+  documentaries: Movie[]
   // mysteryMovies: Movie[]
   // historyMovies: Movie[]
 
@@ -21,15 +20,12 @@ interface Props {
 const Home = ({
   netflixOriginals,
   trendingNow,
-
-  // topRated,
-  // actionMovies,
-  // comedyMovies,
-  // animation,
-  // fantasyMovies,
-  // familyMovies,
-  // romanceMovies,
-  // documentaries,
+  topRated,
+  actionMovies,
+  comedyMovies,
+  fantasyMovies,
+  familyMovies,
+  documentaries,
   // mysteryMovies,
   // historyMovies,
 }: Props) => {
@@ -40,13 +36,22 @@ const Home = ({
         <title>Netflix App_TS</title>
       </Head>
       <Header />
-      <main>
+      <main className='relative pb-24 pl-4 lg:space-y-24 lg:pl-16'>
         <Banner netflixOriginals={netflixOriginals} />
         <section>
-          {/* Row */}
+
+          <Row title="Trending Now" movies={trendingNow} />
+          <Row title="Top Rated" movies={topRated} />
+          <Row title="Actions" movies={actionMovies} />
+          <Row title="Comedies" movies={comedyMovies} />
+          {/* My List Component */}
+          <Row title="Fantasy Movies" movies={fantasyMovies} />
+          <Row title="Family Movies" movies={familyMovies} />
+          <Row title="Documentaries" movies={documentaries} />
 
         </section>
       </main>
+      {/* Modal */}
       <footer className="flex items-center justify-center w-full h-24 border-t">
         <div>number</div>
       </footer>
@@ -63,10 +68,8 @@ export const getServerSideProps = async () => {
     topRated,
     actionMovies,
     comedyMovies,
-    animations,
     fantasyMovies,
     familyMovies,
-    romanceMovies,
     documentaries,
     mysteryMovies,
     historyMovies,
@@ -76,10 +79,8 @@ export const getServerSideProps = async () => {
     fetch(requests.fetchTopRated).then((res) => res.json()),
     fetch(requests.fetchActionMovies).then((res) => res.json()),
     fetch(requests.fetchComedyMovies).then((res) => res.json()),
-    fetch(requests.fetchAnimations).then((res) => res.json()),
     fetch(requests.fetchFantasyMovies).then((res) => res.json()),
     fetch(requests.fetchFamilyMovies).then((res) => res.json()),
-    fetch(requests.fetchRomanceMovies).then((res) => res.json()),
     fetch(requests.fetchDocumentaries).then((res) => res.json()),
     fetch(requests.fetchMysteryMovies).then((res) => res.json()),
     fetch(requests.fetchHistoryMovies).then((res) => res.json()),
@@ -91,10 +92,8 @@ export const getServerSideProps = async () => {
       topRated: topRated.results,
       actionMovies: actionMovies.results,
       comedyMovies: comedyMovies.results,
-      animations: animations.results,
       fantasyMovies: fantasyMovies.results,
       familyMovies: familyMovies.results,
-      romanceMovies: romanceMovies.results,
       documentaries: documentaries.results,
       mysteryMovies: mysteryMovies.results,
       historyMovies: historyMovies.results,

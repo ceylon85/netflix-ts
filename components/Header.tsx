@@ -22,7 +22,7 @@ function Header() {
     }, [])
 
     return (
-        <header className={`${isScrolled && "bg-red-500"}`}>
+        <header className={`${isScrolled && "bg-black"}`}>
             <div className="flex items-center space-x-2 md:space-x-10">
                 <img src="https://upload.wikimedia.org/wikipedia/commons/0/08/Netflix_2015_logo.svg" alt="main logo" height={100} width={100} className="object-contain cursor-pointer " />
 

@@ -18,7 +18,7 @@
        @apply cursor-pointer text-sm font-normal text-[#ffffff] transition duration-[.4s] hover:opacity-[.7];
     }
     .bannerButton{
-        @apply flex cursor-pointer items-center gap-x-2 rounded  px-5 py-1.5 text-sm font-semibold hover:opacity-95 hover:text-[#000] hover:bg-red-100 transition md:py-2.5 md:px-8 md:text-xl
+        @apply flex cursor-pointer items-center gap-x-2 rounded  px-5 py-1.5 text-sm font-semibold hover:opacity-90 transition md:py-2.5 md:px-8 md:text-xl
     }
  
 }
