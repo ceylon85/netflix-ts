@@ -20,5 +20,12 @@
     .bannerButton{
         @apply flex cursor-pointer items-center gap-x-2 rounded  px-5 py-1.5 text-sm font-semibold hover:opacity-90 transition md:py-2.5 md:px-8 md:text-xl
     }
+    /* .rowPoster{
+        @apply object-cover rounded-sm md:rounded
+    }
+
+    .rowPosterLarge{
+        @apply h-60 max-h-[290px] hover:scale-110 rounded-md
+    } */
  
 }
