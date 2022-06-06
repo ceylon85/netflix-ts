@@ -1,8 +1,15 @@
+import Head from 'next/head'
 import React from 'react'
 
 function Login() {
   return (
-    <div>Log in</div>
+    <div>
+      <Head>
+        <title>Netflix App_TS</title>
+      </Head>
+
+    </div>
+
   )
 }
 
