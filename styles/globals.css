@@ -20,6 +20,10 @@
     .bannerButton{
         @apply flex cursor-pointer items-center gap-x-2 rounded  px-5 py-1.5 text-sm font-semibold hover:opacity-90 transition md:py-2.5 md:px-8 md:text-xl
     }
+    .input {
+        @apply relative w-full bg-[#333] placeholder-[gray] outline-none rounded px-2.5 py-3 focus:bg-[#454545]
+    }
+    
     /* .rowPoster{
         @apply object-cover rounded-sm md:rounded
     }
