@@ -3,6 +3,7 @@ import Image from 'next/image'
 import React from 'react'
 
 function Login() {
+  
   return (
     <div className='relative flex flex-col w-screen h-screen bg-black md:items-center md:justify-center md:bg-transparent '>
 
@@ -29,8 +30,11 @@ function Login() {
 
           </div>
 
-          <button className='bg-red-700 input'>로그인</button>
-
+          <button className='bg-[#e50914] font-semibold input'>로그인</button>
+          <div className='text-gray-400 '>
+            <span> Netflix 회원이 아닌가요? </span>
+            <button type='submit' className='text-white hover:underline'>지금 가입하세요</button>
+          </div>
         </form>
       </div>
     </div>
