@@ -35,50 +35,80 @@ interface AuthProviderProps {
 }
 
 export const AuthProvider = ({ children }: AuthProviderProps) => {
-    const [loading, setLoding] = useState(false);
-    const [user, setUser] = useState<User | null>(null);
     const router = useRouter();
+    const [loading, setLoading] = useState(false);
+    const [user, setUser] = useState<User | null>(null);
+    const [error, setError] = useState(null);
+    const [initialLoading, setInitialLoading] = useState(true)
 
+    useEffect(
+        () =>
+            onAuthStateChanged(auth, (user) => {
+                if (user) {
+                    // Logged in...
+                    setUser(user)
+                    setLoading(false)
+                } else {
+                    // Not logged in...
+                    setUser(null)
+                    setLoading(true)
+                    router.push('/login')
+                }
+
+                setInitialLoading(false)
+            }),
+        [auth]
+    )
+    // 가입하기
     const signUp = async (email: string, password: string) => {
-        setLoding(true);
+        setLoading(true);
 
         await createUserWithEmailAndPassword(auth, email, password)
             .then((userCredential) => {
                 setUser(userCredential.user)
                 router.push('/')
-                setLoding(false)
+                setLoading(false)
             })
             .catch((error) => alert(error.message))
-            .finally(() => setLoding(false))
+            .finally(() => setLoading(false))
     }
+
+    // 로그인
     const signIn = async (email: string, password: string) => {
-        setLoding(true);
+        setLoading(true);
 
         await signInWithEmailAndPassword(auth, email, password)
             .then((userCredential) => {
                 setUser(userCredential.user)
                 router.push('/')
-                setLoding(false)
+                setLoading(false)
             })
             .catch((error) => alert(error.message))
-            .finally(() => setLoding(false))
+            .finally(() => setLoading(false))
     }
 
+    // 로그아웃
     const logout = async () => {
-        setLoding(true)
+        setLoading(true)
 
         signOut(auth).then(() => {
             setUser(null) // 사용자 권한 제거
         }).catch((error) => alert(error.message))
-            .finally(() => setLoding(false))
+            .finally(() => setLoading(false))
     }
 
+    const memoedValue = useMemo(() => ({
+        user, signUp, signIn, loading, logout, error
+    }), [user, loading])
+
     return (
-        <AuthContext.Provider value={value} >
-            {children}
+        <AuthContext.Provider value={memoedValue} >
+            {!initialLoading && children}
         </AuthContext.Provider>
     )
 
 }
 
-export default useAuth
+export default function useAuth() {
+    return useContext(AuthContext)
+}

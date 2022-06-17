@@ -2,10 +2,12 @@ import { SearchIcon } from '@heroicons/react/outline'
 import { GiftIcon, BellIcon } from '@heroicons/react/solid'
 import Link from 'next/link'
 import { useState, useEffect } from 'react'
+import useAuth from '../hooks/useAuth';
 
 function Header() {
     const [isScrolled, setIsScrolled] = useState(false);
-
+    const { logout } = useAuth()
+    
     useEffect(() => {
         const handleScroll = () => {
             if (window.scrollY > 0) {
@@ -14,7 +16,7 @@ function Header() {
                 setIsScrolled(false);
             }
         }
-        
+
         window.addEventListener('scroll', handleScroll)
         return () => {
             window.removeEventListener('scroll', handleScroll)
@@ -41,7 +43,7 @@ function Header() {
                 <GiftIcon className='w-6 h-6 sm:inline' />
                 <BellIcon className='w-6 h-6 sm:inline' />
                 <Link href=''>
-                    <img src="https://occ-0-325-395.1.nflxso.net/dnm/api/v6/K6hjPJd6cR6FpVELC5Pd6ovHRSk/AAAABZ2mdn_92ruEqx0QzXDv947nXRyeamVpcKT4xbR6N-51JGWihqgKLLIX9gO_E319FW3Qoqff4ujjappyQ8uskyFS6Q.png?r=a41" alt="profile" className='rounded cursor-pointer' width={30} height={30} />
+                    <img src="https://occ-0-325-395.1.nflxso.net/dnm/api/v6/K6hjPJd6cR6FpVELC5Pd6ovHRSk/AAAABZ2mdn_92ruEqx0QzXDv947nXRyeamVpcKT4xbR6N-51JGWihqgKLLIX9gO_E319FW3Qoqff4ujjappyQ8uskyFS6Q.png?r=a41" alt="profile" className='rounded cursor-pointer' width={30} height={30} onClick={logout} />
                 </Link>
             </div>
         </header>

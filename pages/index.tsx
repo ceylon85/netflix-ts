@@ -4,6 +4,8 @@ import Header from '../components/Header'
 import requests from '../utils/requests'
 import { Movie } from '../typings'
 import Row from '../components/Row'
+import useAuth from '../hooks/useAuth'
+
 interface Props {
   netflixOriginals: Movie[]
   trendingNow: Movie[]
@@ -30,6 +32,10 @@ const Home = ({
   // historyMovies,
 }: Props) => {
   //console.log(netflixOriginals, trendingNow);
+  const { logout, loading } = useAuth();
+
+  if (loading) return null;
+
   return (
     <div className="relative h-screen bg-gradient-to-b lg:h-[140vh]">
       <Head>
@@ -39,7 +45,7 @@ const Home = ({
       <main className='relative pb-24 pl-4 lg:space-y-24 lg:pl-16'>
         <Banner netflixOriginals={netflixOriginals} />
         <section className='md:space-y-24'>
-        <Row title="NETFLIX ORIGINALS" movies={netflixOriginals} />
+          <Row title="NETFLIX ORIGINALS" movies={netflixOriginals} />
 
           <Row title="Trending Now" movies={trendingNow} />
           <Row title="Top Rated" movies={topRated} />
