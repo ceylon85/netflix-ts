@@ -5,6 +5,10 @@ import requests from '../utils/requests'
 import { Movie } from '../typings'
 import Row from '../components/Row'
 import useAuth from '../hooks/useAuth'
+import { useState } from 'react'
+import { useRecoilValue } from 'recoil'
+import { modalState, movieState } from '../atoms/modalAtom'
+import Modal from '../components/Modal'
 
 interface Props {
   netflixOriginals: Movie[]
@@ -33,7 +37,8 @@ const Home = ({
 }: Props) => {
   //console.log(netflixOriginals, trendingNow);
   const { logout, loading } = useAuth();
-
+  const showModal = useRecoilValue(modalState);
+  // const [showModal, setShowModal] = useState(false);
   if (loading) return null;
 
   return (
@@ -59,6 +64,7 @@ const Home = ({
         </section>
       </main>
       {/* Modal */}
+      {showModal && <Modal/>}
       <footer className="flex items-center justify-center w-full h-24 border-t">
         <div>number</div>
       </footer>
