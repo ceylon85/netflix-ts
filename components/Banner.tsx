@@ -18,7 +18,7 @@ function Banner({ netflixOriginals }: Props) {
     useEffect(() => {
         setMovie(netflixOriginals[Math.floor(Math.random() * netflixOriginals.length)])
     }, [netflixOriginals])
-    console.log(movie)
+    console.log(movie)// 배너에 뜨는 영화의 정보
 
     return (
         <div className='flex flex-col py-16 space-y-2 md:space-y-4 lg:h-[65vh] lg:justify-end lg:pb-12'>
