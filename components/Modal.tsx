@@ -63,6 +63,24 @@ function Modal() {
             playing
             muted={muted}
           />
+          <div className="absolute flex items-center justify-between w-full px-10 bottom-10">
+            <div className="flex space-x-2">
+              <button className="flex items-center gap-x-2 rounded bg-white px-8 text-xl font-bold text-black transition hover:bg-[#e6e6e6]">
+                <FaPlay className="text-black h-7 w-7" />
+                Play
+              </button>
+              <button className="modalButton" onClick={handleList}>
+                {addedToList ? (
+                  <CheckIcon className="h-7 w-7" />
+                ) : (
+                  <PlusIcon className="h-7 w-7" />
+                )}
+              </button>
+              <button className="modalButton">
+                <ThumbUpIcon className="w-6 h-6" />
+              </button>
+            </div>
+          </div>
         </div>
       </>
     </MuiModal>
