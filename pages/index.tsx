@@ -41,7 +41,7 @@ const Home = ({
   if (loading) return null;
 
   return (
-    <div className="relative h-screen bg-gradient-to-b lg:h-[140vh]">
+    <div className={`relative h-screen bg-gradient-to-b lg:h-[140vh] ${showModal && "!h-screen overflow-hidden"}`}>
       <Head>
         <title>Netflix App_TS</title>
       </Head>
@@ -64,9 +64,9 @@ const Home = ({
       </main>
       {/* Modal */}
       {showModal && <Modal/>}
-      <footer className="flex items-center justify-center w-full h-24 border-t">
+      {/* <footer className="flex items-center justify-center w-full h-24 border-t">
         <div>number</div>
-      </footer>
+      </footer> */}
     </div>
   )
 }
