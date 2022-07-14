@@ -8,6 +8,7 @@ import useAuth from '../hooks/useAuth'
 import { useRecoilValue } from 'recoil'
 import { modalState, movieState } from '../atoms/modalAtom'
 import Modal from '../components/Modal'
+import Plans from '../components/Plans'
 
 interface Props {
   netflixOriginals: Movie[]
@@ -37,8 +38,11 @@ const Home = ({
   //console.log(netflixOriginals, trendingNow);
   const { logout, loading } = useAuth();
   const showModal = useRecoilValue(modalState);
+  const subscription = false;
   // const [showModal, setShowModal] = useState(false);
-  if (loading) return null;
+  if (loading || subscription == null) return null;
+
+  if (!subscription) return <Plans />
 
   return (
     <div className={`relative h-screen bg-gradient-to-b lg:h-[140vh] ${showModal && "!h-screen overflow-hidden"}`}>
@@ -63,7 +67,7 @@ const Home = ({
         </section>
       </main>
       {/* Modal */}
-      {showModal && <Modal/>}
+      {showModal && <Modal />}
       {/* <footer className="flex items-center justify-center w-full h-24 border-t">
         <div>number</div>
       </footer> */}
