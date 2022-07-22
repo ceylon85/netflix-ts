@@ -1,3 +1,4 @@
+import { CheckIcon } from "@heroicons/react/outline"
 import Head from "next/head"
 import Link from "next/link"
 import useAuth from "../hooks/useAuth"
@@ -25,8 +26,23 @@ function Plans() {
                     onClick={logout}>Logout </button>
             </header>
 
-            <main>
-                <h1 className="mb-3 text-3xl font-medium">Choose the plan that's right for you</h1>
+            <main className="max-w-5xl px-5 pb-12 mx-auto transition-all pt-28 md:px-10">
+                <h1 className="mb-3 text-3xl font-medium ">Choose the plan that's right for you</h1>
+                <ul>
+                    <li className="flex items-center text-lg gap-x-2">
+                        <CheckIcon className="h-7 w-7 text-[#E50914]" /> Watch all you want.
+                        Ad-free.
+                    </li>
+                    <li className="flex items-center text-lg gap-x-2">
+                        <CheckIcon className="h-7 w-7 text-[#E50914]" /> Recommendations
+                        just for you.
+                    </li>
+                    <li className="flex items-center text-lg gap-x-2">
+                        <CheckIcon className="h-7 w-7 text-[#E50914]" /> Change or cancel
+                        your plan anytime.
+                    </li>
+                </ul>
+                
             </main>
         </div >
     )
