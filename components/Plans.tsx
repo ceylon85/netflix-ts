@@ -2,6 +2,7 @@ import { CheckIcon } from "@heroicons/react/outline"
 import Head from "next/head"
 import Link from "next/link"
 import useAuth from "../hooks/useAuth"
+import Table from "./Table"
 
 
 function Plans() {
@@ -42,7 +43,15 @@ function Plans() {
                         your plan anytime.
                     </li>
                 </ul>
-                
+                {/* Plan */}
+                <div className="flex flex-col mt-4 space-y-4">
+                    <div className="flex items-center self-end justify-end w-full md:w-3/5">
+                        <div className="planBox"> standard</div>
+                        <div className="planBox"> standard</div>
+                        <div className="planBox"> standard</div>
+                    </div>
+                    <Table/>
+                </div>
             </main>
         </div >
     )
