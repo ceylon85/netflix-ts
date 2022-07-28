@@ -9,6 +9,8 @@ import { useRecoilValue } from 'recoil'
 import { modalState, movieState } from '../atoms/modalAtom'
 import Modal from '../components/Modal'
 import Plans from '../components/Plans'
+import { getProducts, Product } from '@stripe/firestore-stripe-payments'
+import payments from '../lib/stripe'
 
 interface Props {
   netflixOriginals: Movie[]
@@ -19,6 +21,7 @@ interface Props {
   fantasyMovies: Movie[]
   familyMovies: Movie[]
   documentaries: Movie[]
+  products: Product[]
   // mysteryMovies: Movie[]
   // historyMovies: Movie[]
 
@@ -32,9 +35,11 @@ const Home = ({
   fantasyMovies,
   familyMovies,
   documentaries,
+  products,
   // mysteryMovies,
   // historyMovies,
 }: Props) => {
+  //console.log(products) firebase 데이터 확인 완료
   //console.log(netflixOriginals, trendingNow);
   const { logout, loading } = useAuth();
   const showModal = useRecoilValue(modalState);
@@ -42,7 +47,7 @@ const Home = ({
   // const [showModal, setShowModal] = useState(false);
   if (loading || subscription == null) return null;
 
-  if (!subscription) return <Plans />
+  if (!subscription) return <Plans products={products} />
 
   return (
     <div className={`relative h-screen bg-gradient-to-b lg:h-[140vh] ${showModal && "!h-screen overflow-hidden"}`}>
@@ -78,6 +83,14 @@ const Home = ({
 export default Home
 
 export const getServerSideProps = async () => {
+  // firebase와 stripe로 연동된 products data(멤버십 관련 데이터)
+  const products = await getProducts(payments, {
+    includePrices: true,
+    activeOnly: true,
+  })
+    .then((res) => res)
+    .catch((error) => console.log(error.message))
+
   const [
     netflixOriginals,
     trendingNow,
@@ -113,6 +126,7 @@ export const getServerSideProps = async () => {
       documentaries: documentaries.results,
       mysteryMovies: mysteryMovies.results,
       historyMovies: historyMovies.results,
+      products,
     }
   }
 }
