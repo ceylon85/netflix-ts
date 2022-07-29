@@ -6,11 +6,12 @@
 /* html, body, heading */
 @layer base {
     body{
-        @apply bg-[#000] text-white
+        @apply bg-[#f3f3f3] text-white
     }
     header{
         @apply fixed top-0 z-50 flex w-full items-center justify-between px-4 py-4 transition-all lg:px-10 lg:py-6;
     }
+   
 }
 /* custom className */
 @layer components {
@@ -27,8 +28,20 @@
         @apply flex h-11 w-11 items-center justify-center rounded-full border-2 border-[gray] bg-[#2a2a2a]/60 transition hover:border-white hover:bg-white/10;
     }
     .planBox {
-        @apply relative mx-1.5 flex h-20 w-[calc(100%/3)] cursor-default items-center justify-center rounded-sm bg-[#e50914] font-semibold shadow after:absolute after:top-full after:left-1/2 after:block after:-translate-x-1/2 after:border-8 after:border-b-0 after:border-transparent after:border-t-[#e50914] after:content-[""] md:h-32 lg:mx-8;
-
+        @apply relative mx-1.5 flex h-20 w-[calc(100%/3)] cursor-default items-center justify-center rounded-sm bg-[#e50914] font-semibold shadow md:h-32 lg:mx-8 text-white;
+    }
+    .selectPlanBox{
+        @apply bg-[#e50914] after:absolute after:top-full after:left-1/2 after:block after:-translate-x-1/2 after:border-8 after:border-b-0 after:border-transparent after:border-t-[#e50914] after:content-[""]
+    }
+    /* Table */
+    .tRow {
+        @apply flex flex-wrap items-center font-medium space-y-1 sm:space-y-3
+    }
+    .tDataTitle {
+        @apply w-full p-1 sm:p-2.5 text-center text-sm font-normal md:w-2/5 md:p-3.5 md:text-left md:text-base
+    }
+    .tDataFeature {
+        @apply w-[calc(100%/3)] p-2.5 text-center md:w-[calc(60%/3)] md:p-3.5;
     }
     /* .rowPoster{
         @apply object-cover rounded-sm md:rounded

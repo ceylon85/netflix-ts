@@ -4,6 +4,7 @@ import Link from "next/link"
 import useAuth from "../hooks/useAuth"
 import Table from "./Table"
 import { Product } from '@stripe/firestore-stripe-payments'
+import { useState } from "react"
 
 interface Props {
     products: Product[];
@@ -11,27 +12,29 @@ interface Props {
 
 function Plans({ products }: Props) {
     const { logout, user } = useAuth()
-    console.log(products)
+    const [selectedPlan, setSelectedPlan] = useState<Product | null>(products[2])//기본 프리미엄으로 선택
+
+    console.log(products[2])
     return (
-        <div>
+        <div className="text-black bg-white">
             <Head>
                 <title>Netflix App_TS</title>
             </Head>
-            <header className="border-b border-white/10 bg=[#141414]">
+            <header className="relative border-b border-gray-500/10">
                 <Link href="/">
                     <img
                         src="https://upload.wikimedia.org/wikipedia/commons/0/08/Netflix_2015_logo.svg"
                         alt="main logo"
                         height={100}
                         width={100}
-                        className="object-contain cursor-pointer " />
+                        className="object-contain w-[75px] h-[20px] sm:w-[10rem] sm:h-[3rem] cursor-pointer " />
                 </Link>
                 <button
                     className="text-lg font-medium hover:underline"
                     onClick={logout}>Logout </button>
             </header>
 
-            <main className="max-w-5xl px-5 pb-12 mx-auto transition-all pt-28 md:px-10">
+            <main className="max-w-5xl px-5 pt-5 pb-12 mx-auto transition-all md:px-10">
                 <h1 className="mb-3 text-3xl font-medium ">원하는 멤버십을 선택하세요.</h1>
                 <ul>
                     <li className="flex items-center text-lg gap-x-2">
@@ -48,14 +51,25 @@ function Plans({ products }: Props) {
                 {/* Plan */}
                 <div className="flex flex-col mt-4 space-y-4">
                     <div className="flex items-center self-end justify-end w-full md:w-3/5">
-                        {products && products.map((product) => (
-                            <div key={product.id} className="planBox">
+                        {products.map((product) => (
+                            <div key={product.id}
+                                className={`planBox ${selectedPlan?.id === product.id ? 'opacity-100' && 'selectPlanBox' : 'opacity-60'
+                                    }`}
+                                onClick={() => setSelectedPlan(product)}>
                                 {product.name}
                             </div>
                         ))}
                     </div>
 
-                    <Table />
+                    <Table products={products} selectedPlan={selectedPlan} />
+                    <small className="text-[#737373] text-xs">
+                        <span>HD(720p), 풀 HD(1080p), UHD(4K), HDR 화질 제공 여부는 사용하는 인터넷 서비스와 디바이스의 성능에 따라 달라질 수 있습니다. 모든 콘텐츠가 모든 화질로 제공되지는 않습니다. 자세한 내용은 <a className="text-blue-600" href="https://help.netflix.com/legal/termsofuse" target="_blank">이용 약관</a>을 확인하세요.</span>
+
+                    </small>
+                    <small className="text-[#737373] text-xs">
+                        <span>한집에 사는 사람들만 계정을 함께 이용할 수 있습니다. 프리미엄 멤버십은 동시접속 4명, 스탠다드 멤버십은 2명, 베이식 멤버십은 1명까지 가능합니다.
+                        </span>
+                    </small>
                     <button>다음</button>
                 </div>
             </main>
