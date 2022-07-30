@@ -5,6 +5,8 @@ import useAuth from "../hooks/useAuth"
 import Table from "./Table"
 import { Product } from '@stripe/firestore-stripe-payments'
 import { useState } from "react"
+import Loader from './Loader'
+import { loadCheckout } from "../lib/stripe"
 
 interface Props {
     products: Product[];
@@ -13,8 +15,17 @@ interface Props {
 function Plans({ products }: Props) {
     const { logout, user } = useAuth()
     const [selectedPlan, setSelectedPlan] = useState<Product | null>(products[2])//기본 프리미엄으로 선택
+    const [isBillingLoading, setBillingLoading] = useState(false)
 
     console.log(products[2])
+
+    const subscribeToPlan = () => {
+        if (!user) return
+
+        loadCheckout(selectedPlan?.prices[0].id!)
+        setBillingLoading(true)
+    }
+
     return (
         <div className="text-black bg-white">
             <Head>
@@ -31,7 +42,7 @@ function Plans({ products }: Props) {
                 </Link>
                 <button
                     className="text-lg font-medium hover:underline"
-                    onClick={logout}>Logout </button>
+                    onClick={logout}>로그아웃</button>
             </header>
 
             <main className="max-w-5xl px-5 pt-5 pb-12 mx-auto transition-all md:px-10">
@@ -70,8 +81,18 @@ function Plans({ products }: Props) {
                         <span>한집에 사는 사람들만 계정을 함께 이용할 수 있습니다. 프리미엄 멤버십은 동시접속 4명, 스탠다드 멤버십은 2명, 베이식 멤버십은 1명까지 가능합니다.
                         </span>
                     </small>
-                    <button>다음</button>
-                </div>
+                    <button
+                        disabled={!selectedPlan || isBillingLoading} //선택한 멤버십이 없거나 결제 로딩일때
+                        className={`text-white mx-auto w-11/12 rounded bg-[#E50914] py-4 text-xl shadow hover:bg-[#f6121d] md:w-[420px] ${isBillingLoading && 'opacity-60'
+                            }`}
+                        onClick={subscribeToPlan}
+                    >
+                        {isBillingLoading ? (
+                            <Loader color="dark:fill-gray-300" />
+                        ) : (
+                            '구독'
+                        )}
+                    </button>                </div>
             </main>
         </div >
     )

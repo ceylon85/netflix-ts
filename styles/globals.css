@@ -38,7 +38,7 @@
         @apply flex flex-wrap items-center font-medium space-y-1 sm:space-y-3
     }
     .tDataTitle {
-        @apply w-full p-1 sm:p-2.5 text-center text-sm font-normal md:w-2/5 md:p-3.5 md:text-left md:text-base
+        @apply w-full pt-3 sm:p-2.5 text-center text-sm font-normal md:w-2/5 md:p-3.5 md:text-left md:text-base
     }
     .tDataFeature {
         @apply w-[calc(100%/3)] p-2.5 text-center md:w-[calc(60%/3)] md:p-3.5;
