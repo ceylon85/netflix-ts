@@ -27,9 +27,9 @@ function Banner({ netflixOriginals }: Props) {
                 <Image src={`${baseUrl}${movie?.backdrop_path || movie?.poster_path}`} layout='fill'
                     objectFit='cover' />
             </div>
-
+            {/* Banner Title */}
             <h1 className='text-2xl font-bold lg:text-7xl md:text-4xl'>{movie?.title || movie?.name || movie?.original_name}</h1>
-
+        {/* Banner Description */}
             <p className='max-w-xs text-xs text-shadow-md md:max-w-lg md:text-lg lg:max-w-2xl lg:text-2xl'>{movie?.overview}</p>
 
             <div className='flex space-x-3'>

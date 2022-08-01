@@ -11,6 +11,7 @@ import Modal from '../components/Modal'
 import Plans from '../components/Plans'
 import { getProducts, Product } from '@stripe/firestore-stripe-payments'
 import payments from '../lib/stripe'
+import useSubscription from '../hooks/useSubscription'
 
 interface Props {
   netflixOriginals: Movie[]
@@ -41,9 +42,10 @@ const Home = ({
 }: Props) => {
   //console.log(products) firebase 데이터 확인 완료
   //console.log(netflixOriginals, trendingNow);
-  const { logout, loading } = useAuth();
+  const { loading, user } = useAuth();
   const showModal = useRecoilValue(modalState);
-  const subscription = false;
+  const subscription = useSubscription(user);
+
   // const [showModal, setShowModal] = useState(false);
   if (loading || subscription == null) return null;
 
@@ -55,7 +57,7 @@ const Home = ({
         <title>Netflix App_TS</title>
       </Head>
       <Header />
-      <main className='relative pb-24 pl-4 lg:space-y-24 lg:pl-16'>
+      <main className='relative pb-24 pl-4 bg-red-600 lg:space-y-24 lg:pl-16'>
         <Banner netflixOriginals={netflixOriginals} />
         <section className='md:space-y-24'>
           <Row title="NETFLIX ORIGINALS" movies={netflixOriginals} />
