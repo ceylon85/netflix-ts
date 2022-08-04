@@ -47,18 +47,20 @@ const Home = ({
   const subscription = useSubscription(user);
 
   // const [showModal, setShowModal] = useState(false);
-  if (loading || subscription == null) return null;
+
+  console.log(subscription);
+  //if (loading || subscription == null) return null;
 
   if (!subscription) return <Plans products={products} />
-
+  
   return (
     <div className={`relative h-screen bg-gradient-to-b lg:h-[140vh] ${showModal && "!h-screen overflow-hidden"}`}>
       <Head>
         <title>Netflix App_TS</title>
       </Head>
       <Header />
-      <main className='relative pb-24 pl-4 bg-red-600 lg:space-y-24 lg:pl-16'>
-        <Banner netflixOriginals={netflixOriginals} />
+      <main className='relative pb-24 pl-4 lg:space-y-24 lg:pl-16'>
+        <Banner netflixOriginals={netflixOriginals}  />
         <section className='md:space-y-24'>
           <Row title="NETFLIX ORIGINALS" movies={netflixOriginals} />
 

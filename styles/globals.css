@@ -6,7 +6,7 @@
 /* html, body, heading */
 @layer base {
     body{
-        @apply bg-[#f3f3f3] text-white
+        @apply bg-black text-white
     }
     header{
         @apply fixed top-0 z-50 flex w-full items-center justify-between px-4 py-4 transition-all lg:px-10 lg:py-6;
@@ -42,6 +42,11 @@
     }
     .tDataFeature {
         @apply w-[calc(100%/3)] p-2.5 text-center md:w-[calc(60%/3)] md:p-3.5;
+    }
+
+    /* avatar */
+    .profileAvatar {
+        @apply w-[30px] h-[30px] mr-[10px] rounded
     }
     /* .rowPoster{
         @apply object-cover rounded-sm md:rounded
