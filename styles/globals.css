@@ -44,9 +44,15 @@
         @apply w-[calc(100%/3)] p-2.5 text-center md:w-[calc(60%/3)] md:p-3.5;
     }
 
-    /* avatar */
+    /* profile */
+    .dropdownProfile {
+        @apply flex items-center px-3 py-[3px] mb-3 cursor-pointer hover:underline
+    }
     .profileAvatar {
         @apply w-[30px] h-[30px] mr-[10px] rounded
+    }
+    .profileAccount {
+        @apply px-5 py-[6px] space-y-1 
     }
     /* .rowPoster{
         @apply object-cover rounded-sm md:rounded

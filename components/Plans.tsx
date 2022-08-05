@@ -92,7 +92,8 @@ function Plans({ products }: Props) {
                         ) : (
                             '구독'
                         )}
-                    </button>                </div>
+                    </button>
+                </div>
             </main>
         </div >
     )

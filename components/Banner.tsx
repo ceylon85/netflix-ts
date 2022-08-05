@@ -28,9 +28,9 @@ function Banner({ netflixOriginals }: Props) {
                     objectFit='cover' />
             </div>
             {/* Banner Title */}
-            <h1 className='text-2xl font-bold lg:text-7xl md:text-4xl'>{movie?.title || movie?.name || movie?.original_name}</h1>
+            <h1 className='text-2xl font-bold lg:mt-2 lg:text-6xl md:text-4xl'>{movie?.title || movie?.name || movie?.original_name}</h1>
             {/* Banner Description */}
-            <p className='max-w-xs text-xs text-shadow-md md:max-w-lg md:text-lg lg:max-w-2xl lg:text-2xl'>{movie?.overview}</p>
+            <p className='max-w-xs text-xs text-shadow-md md:max-w-lg md:text-lg lg:max-w-2xl lg:text-2xl'>{(movie?.overview?.slice(0, 150).concat('...'))}</p>
 
             <div className='flex space-x-3'>
                 <button className='text-[#000] bg-red-50 hover:bg-red-100 bannerButton'>
@@ -41,7 +41,7 @@ function Banner({ netflixOriginals }: Props) {
                         setCurrentMovie(movie)
                         setShowModal(true)
                     }}>More Info
-                    <FaInfoCircle className='w-5 h-5 md:h-8 md:w-8' />
+                    <FaInfoCircle className='w-5 h-5 md:h-6 md:w-6 lg:h-8 lg:w-8' />
                 </button>
             </div>
             {/* fade--bottom */}
