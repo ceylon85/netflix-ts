@@ -3,6 +3,7 @@ import { GetStaticProps } from 'next'
 import Head from 'next/head'
 import Link from 'next/link'
 import Header from '../components/Header'
+import Membership from '../components/Membership'
 import useAuth from '../hooks/useAuth'
 import useSubscription from '../hooks/useSubscription'
 import payments from '../lib/stripe'
@@ -12,7 +13,7 @@ interface Props {
 }
 
 function Account({ products }: Props) {
-    const { user } = useAuth()
+    const { user, logout } = useAuth()
     const subscription = useSubscription(user)
     console.log(products)
     return (
@@ -22,8 +23,8 @@ function Account({ products }: Props) {
             </Head>
             <Header />
 
-            <main className='pt-24'>
-                <div>
+            <main className='max-w-6xl px-5 pt-24 pb-12 mx-auto transition-all md:px-10'>
+                <div className='flex flex-col gap-x-4 md:flex-row md:items-center'>
                     <h1 className='text-3xl md:text-4xl'>
                         계정
                     </h1>
@@ -33,7 +34,7 @@ function Account({ products }: Props) {
                     </div>
                 </div>
 
-                {/* <Membership/> */}
+                <Membership/>
                 <div className='grid grid-cols-1 px-4 py-4 mt-6 border gap-x-4 md:grid-cols-4 md:border-x-0 md:border-t md:border-b-0 md:px-0 md:pb-0'>
                     <h4 className='text-lg text-[gray]'>멤버십 상세 정보</h4>
                     {/* 현재 구독 멤버십 찾기 */}
@@ -49,6 +50,17 @@ function Account({ products }: Props) {
                     >
                         멤버십 변경
                     </p>
+                </div>
+
+                <div className="grid grid-cols-1 px-4 py-4 mt-6 border gap-x-4 md:grid-cols-4 md:border-x-0 md:border-t md:border-b-0 md:px-0">
+                    <h4 className="text-lg text-[gray]">설정</h4>
+                    <p
+                        className="col-span-3 text-blue-500 cursor-pointer hover:underline"
+                        onClick={logout}
+                    >
+                        모든 디바이스에서 로그아웃
+                    </p> 
+                   
                 </div>
             </main>
         </div>
