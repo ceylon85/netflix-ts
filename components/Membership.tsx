@@ -8,7 +8,7 @@ function Membership() {
     const { user } = useAuth()
     const subscription = useSubscription(user)
     const [isBillingLoading, setBillingLoading] = useState(false)
-    
+
     const manageSubscription = () => {
         if (subscription) {
             setBillingLoading(true)
@@ -32,6 +32,35 @@ function Membership() {
                         '멤버십 해지'
                     )}
                 </button>
+            </div>
+            <div className='col-span-3'>
+                <div className="flex flex-col justify-between py-4 border-b border-white/10 md:flex-row">
+                    <div>
+                        <p className="font-medium">{user?.email}</p>
+                        <p className="text-[gray]">비밀번호: ****** </p>
+                        <p className="text-[gray]">전화번호: 010 123 4567  { } </p>
+                    </div>
+                    <div className="md:text-right">
+                        <p className="membershipLink">이메일주소 변경</p>
+                        <p className="membershipLink">비밀번호 변경</p>
+                        <p className="membershipLink">휴대폰 번호 등록</p>
+                    </div>
+                </div>
+                <div className="flex flex-col justify-between pt-4 pb-4 md:flex-row md:pb-0">
+                    <div>
+                        <p>
+                            {subscription?.cancel_at_period_end
+                                ? 'Your membership will end on '
+                                : '다음 결제일 '}
+                            {subscription?.current_period_end}
+                        </p>
+                    </div>
+                    <div className="md:text-right">
+                        <p className="membershipLink">결제 정보 관리</p>
+                        <p className="membershipLink">결제 상세정보</p>
+                        <p className="membershipLink">결제일 변경</p>
+                    </div>
+                </div>
             </div>
         </div>
 

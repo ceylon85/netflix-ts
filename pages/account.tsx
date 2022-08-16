@@ -30,7 +30,7 @@ function Account({ products }: Props) {
                     </h1>
                     <div className='-ml-0.5 flex items-center gap-x-1.5'>
                         <img src="https://rb.gy/4vfk4r" alt="" className='w-7 h-7' />
-                        <p className='text-xs font-semibold text-[#555]'>다음 결제 날짜는 {subscription?.created}입니다</p>
+                        <p className='text-xs font-semibold text-[#555]'>멤버십 시작: {subscription?.created}</p>
                     </div>
                 </div>
 

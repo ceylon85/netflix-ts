@@ -54,6 +54,9 @@
     .profileAccount {
         @apply px-5 py-[6px] space-y-1 
     }
+    .membershipLink {
+        @apply text-blue-500 cursor-pointer hover:underline
+    }
     /* .rowPoster{
         @apply object-cover rounded-sm md:rounded
     }
