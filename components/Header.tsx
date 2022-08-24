@@ -4,6 +4,7 @@ import Link from 'next/link'
 import { useState, useEffect } from 'react'
 import useAuth from '../hooks/useAuth';
 import { useRouter } from 'next/router'
+import BasicMenu from './BasicMenu';
 
 function Header() {
     const [isScrolled, setIsScrolled] = useState(false);
@@ -25,7 +26,7 @@ function Header() {
             window.removeEventListener('scroll', handleScroll)
         }
     }, [])
-    
+
     const handleDropdown = () => {
         if (!dropdown) {
             setDropdown(true);
@@ -38,6 +39,7 @@ function Header() {
             <div className="flex items-center space-x-2 md:space-x-10">
                 <img src="https://upload.wikimedia.org/wikipedia/commons/0/08/Netflix_2015_logo.svg" alt="main logo" height={100} width={100} className="object-contain cursor-pointer " />
 
+                <BasicMenu />
                 <ul className="hidden space-x-4 md:flex">
                     <li className="headerLink">홈</li>
                     <li className="headerLink">TV프로그램 </li>
@@ -55,12 +57,12 @@ function Header() {
                 <div className='flex items-center mr-[20px] cursor-pointer '>
 
                     <Link href=''>
-                        <img src="https://occ-0-325-395.1.nflxso.net/dnm/api/v6/K6hjPJd6cR6FpVELC5Pd6ovHRSk/AAAABZ2mdn_92ruEqx0QzXDv947nXRyeamVpcKT4xbR6N-51JGWihqgKLLIX9gO_E319FW3Qoqff4ujjappyQ8uskyFS6Q.png?r=a41" alt="profile" className='rounded ' width={30} height={30}  />
+                        <img src="https://occ-0-325-395.1.nflxso.net/dnm/api/v6/K6hjPJd6cR6FpVELC5Pd6ovHRSk/AAAABZ2mdn_92ruEqx0QzXDv947nXRyeamVpcKT4xbR6N-51JGWihqgKLLIX9gO_E319FW3Qoqff4ujjappyQ8uskyFS6Q.png?r=a41" alt="profile" className='rounded ' width={30} height={30} />
                     </Link>
-                    <ChevronDownIcon className='w-6' onClick={handleDropdown} />
+                    <ChevronDownIcon className='w-6 sm:inline ' onClick={handleDropdown} />
                     {dropdown && (
                         <div
-                            className="absolute sm:right-[3%] sm:top-[68px] w-[181px] ml-0 p-0 bg-black/80 z-100 right-[4%] top-[52px]"
+                            className="absolute sm:right-[3%] sm:top-[68px] w-44 ml-0 p-0 bg-black/80 z-100 right-[4%] top-[52px] !border-[gray] !border"
                             // onMouseLeave={handleDropdown}
                             onClick={handleDropdown}
                         >
@@ -92,13 +94,13 @@ function Header() {
                                     <p className='m-0 font-normal'>키즈</p>
                                 </li>
                             </ul>
-                            <div className='hover:underline'>
+                            <div className='!text-[#b3b3b3] hover:!text-white '>
                                 <p className='px-5 py-[5px] cursor-pointer font-normal border-b-[.8px]  pt-0'>프로필 관리</p>
                             </div>
                             <ul className="profileAccount">
-                                <li className="hover:underline" onClick={() => router.push("/account")}>계정</li>
-                                <li className="hover:underline">고객 센터</li>
-                                <li className="hover:underline" onClick={logout}>로그아웃</li>
+                                <li className="!text-[#b3b3b3] hover:!text-white" onClick={() => router.push("/account")}>계정</li>
+                                <li className="!text-[#b3b3b3] hover:!text-white ">고객 센터</li>
+                                <li className="!text-[#b3b3b3] hover:!text-white  hover:underline" onClick={logout}>로그아웃</li>
                             </ul>
                         </div>
                     )}

@@ -46,7 +46,7 @@
 
     /* profile */
     .dropdownProfile {
-        @apply flex items-center px-3 py-[3px] mb-3 cursor-pointer hover:underline
+        @apply flex items-center px-3 py-[3px] mb-3 cursor-pointer
     }
     .profileAvatar {
         @apply w-[30px] h-[30px] mr-[10px] rounded
@@ -57,6 +57,25 @@
     .membershipLink {
         @apply text-blue-500 cursor-pointer hover:underline
     }
+    .dropdownProfile > p {
+       @apply !text-[#b3b3b3] hover:!text-white 
+    }
+    /* MUI Menu */
+    .menu {
+        @apply md:hidden;
+      }
+    
+      .menu .MuiPaper-root {
+        @apply !absolute !left-0 !rounded-none !border !border-[gray] !bg-black !text-white;
+      }
+    
+      .menu .MuiList-root {
+        @apply !p-0;
+      }
+    
+      .menu .MuiMenuItem-root {
+        @apply !block !w-44 !py-4 !text-center !text-sm !text-[#b3b3b3] !transition !duration-200 first:cursor-default first:!font-normal first:!text-white hover:!bg-[#11100F];
+      }
     /* .rowPoster{
         @apply object-cover rounded-sm md:rounded
     }
