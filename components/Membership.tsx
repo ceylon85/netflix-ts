@@ -50,7 +50,7 @@ function Membership() {
                     <div>
                         <p>
                             {subscription?.cancel_at_period_end
-                                ? 'Your membership will end on '
+                                ? '멤버십 종료일 '
                                 : '다음 결제일 '}
                             {subscription?.current_period_end}
                         </p>
